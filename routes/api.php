@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DarJma3aExpenseController;
+use App\Http\Controllers\GivewayController;
 use App\Http\Controllers\Jam3iyaExpenseController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberParticipationController;
@@ -76,3 +77,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
 
+Route::group(['prefix' => 'giveway'], function() {
+    Route::post('/create', [GivewayController::class, 'create']);
+    Route::get('/get-all', [GivewayController::class, 'getAll']);
+    Route::post('/update', [GivewayController::class, 'update']);
+    Route::post('/delete', [GivewayController::class, 'delete']);
+});
