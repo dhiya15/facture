@@ -36,8 +36,8 @@ class FindTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'id types est obligatoire',
-            'id.exists' => 'type non trouvé'
+            'id.required' => 'معرف النوع اجباري',
+            'id.exists' => 'نوع غير موجود'
         ];
     }
 }

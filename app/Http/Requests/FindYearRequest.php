@@ -36,8 +36,8 @@ class FindYearRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'id années est obligatoire',
-            'id.exists' => 'années non trouvé'
+            'id.required' => 'معرف السنة اجباري',
+            'id.exists' => 'سنة غير موجودة'
         ];
     }
 }

@@ -36,8 +36,8 @@ class FindDarJma3aExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'id dar jma3a est obligatoire',
-            'id.exists' => 'dar jma3a non trouvé'
+            'id.required' => 'معرف دار الجماعة اجباري',
+            'id.exists' => 'دار الجماعة غير موجودة'
         ];
     }
 }

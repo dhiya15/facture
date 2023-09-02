@@ -37,8 +37,8 @@ class LoginAdminRequest extends FormRequest
     public function messages()
     {
         return [
-            'login.required' => "Email ou Téléphone ou Nom d'utilisateur est obligatoire",
-            'password.required' => 'Mot de passe est obligatoire',
+            'login.required' => "ايميل او هاتف المستخدم اجباري",
+            'password.required' => 'كلمة المرور اجبارية',
         ];
     }
 }

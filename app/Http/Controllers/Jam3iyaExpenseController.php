@@ -17,7 +17,7 @@ class Jam3iyaExpenseController extends Controller
             Jam3iyaExpense::create($data);
             return response()->json([
                 "success" => true,
-                "message" => "Opération réussie"
+                "message" => "نجحت العملية"
             ]);
         } catch (\Exception $e) {
             return response()->json([

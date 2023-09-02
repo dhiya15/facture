@@ -41,16 +41,16 @@ class AddMemberRequest extends FormRequest
     public function messages()
     {
         return [
-            'full_name.required' => 'Nom est obligatoire',
-            'email.email' => 'Email est invalide',
-            'email.unique' => 'Email est déja utilisé',
-            'phone.required' => 'Téléphone est obligatoire',
-            'phone.unique' => 'Téléphone est existe déja',
-            'phone.regex' => 'Téléphone est invalide',
-            'phone.min' => 'Téléphone doit etre 10 caractères au minimum',
-            'image.image' => 'Le logo normalement est une image',
-            'image.mimes' => 'Extention non acceptable',
-            'image.max' => 'La taille maximal est 2 MO'
+            'full_name.required' => 'الاسم اجباري',
+            'email.email' => 'ايميل غير صالح',
+            'email.unique' => 'ايميل مستخدم من قبل',
+            'phone.required' => 'العاتف اجباري',
+            'phone.unique' => 'الهاتف مستخدم من قبل',
+            'phone.regex' => 'العاتف غير صالح',
+            'phone.min' => 'يجب ان يكون رقم الهاتف من عشر ارقام على الاقل',
+            'image.image' => 'يجب ان يكون الشعار عبارة عن صورة',
+            'image.mimes' => 'امتداد غير مقبول',
+            'image.max' => 'اكبر حجم مسموح هو 2 ميغا'
         ];
     }
 }

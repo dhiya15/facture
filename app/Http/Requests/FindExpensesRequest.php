@@ -36,8 +36,8 @@ class FindExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'id jem3iya est obligatoire',
-            'id.exists' => 'Jem3iya non trouvé'
+            'id.required' => 'معرف الجمعية اجباري',
+            'id.exists' => 'جمعية غير موجودة'
         ];
     }
 }

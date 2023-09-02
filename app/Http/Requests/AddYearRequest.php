@@ -39,9 +39,9 @@ class AddYearRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Nom est obligatoire',
-            'name.unique' => 'Nom est déja existe',
-            'month_amount.required' => 'Prix est obligatoire',
+            'name.required' => 'الاسم اجباري',
+            'name.unique' => 'الاسم موجود من قبل',
+            'month_amount.required' => 'المبلغ اجباري',
         ];
     }
 }

@@ -39,11 +39,11 @@ class UpdateExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Type est obligatoire',
-            'amount.required' => 'Prix est obligatoire',
-            'id.required' => 'id jem3iya est obligatoire',
-            'id.exists' => 'Jem3iya non trouvé',
-            'type.exists' => 'Type non trouvé'
+            'type.required' => 'النوع احباري',
+            'amount.required' => 'المبلغ اجباري',
+            'id.required' => 'معرف الجمعية اجباري',
+            'id.exists' => 'جمعية غير موجودة',
+            'type.exists' => 'نوع غير موجود'
         ];
     }
 }

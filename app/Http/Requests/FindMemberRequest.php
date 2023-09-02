@@ -36,8 +36,8 @@ class FindMemberRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'id membre est obligatoire',
-            'id.exists' => 'membre non trouvé'
+            'id.required' => 'معرف العضو اجباري',
+            'id.exists' => 'عضو غير موجود'
         ];
     }
 }

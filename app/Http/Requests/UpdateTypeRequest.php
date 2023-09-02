@@ -38,10 +38,10 @@ class UpdateTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Type est obligatoire',
-            'name.exists' => 'Type est déja existe',
-            'id.required' => 'id type est obligatoire',
-            'id.exists' => 'type non trouvé'
+            'name.required' => 'النوع اجباري',
+            'name.exists' => 'Tنوع موجود من قبل',
+            'id.required' => 'معرف النوع اجباري',
+            'id.exists' => 'نوع غير موجود'
         ];
     }
 }

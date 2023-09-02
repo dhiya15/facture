@@ -39,11 +39,11 @@ class UpdateDarJma3aExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Type est obligatoire',
-            'amount.required' => 'Prix est obligatoire',
-            'id.required' => 'id dar jma3a est obligatoire',
-            'id.exists' => 'dar jma3a non trouvé',
-            'type.exists' => 'Type non trouvé'
+            'type.required' => 'النوع اجباري',
+            'amount.required' => 'المبلغ اجباري',
+            'id.required' => 'معرف دار الجماعة اجباري',
+            'id.exists' => 'دار الحماعة غير موجودة',
+            'type.exists' => 'نوع غير موجود'
         ];
     }
 }

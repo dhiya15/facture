@@ -38,8 +38,8 @@ class AddExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Type est obligatoire',
-            'amount.required' => 'Prix est obligatoire'
+            'type.required' => 'النوع اجباري',
+            'amount.required' => 'المبلغ اجباري'
         ];
     }
 }

@@ -19,7 +19,7 @@ class AdminController extends Controller
             'success' => true,
             'access_token' => $token,
             'admin' => $admin,
-            'message' => 'Inscription réussie.'
+            'message' => 'تم التسجيل بنجاح'
         ]);
     }
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
         if (is_null($admin) || !Hash::check($request['password'], $admin->password)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Les informations de connexion ne sont pas valides.'
+                'message' => 'معلومات تسجيل الدخول خاطئة'
             ], 402);
         } else {
             $token = $admin->createToken('authToken')->plainTextToken;
@@ -38,7 +38,7 @@ class AdminController extends Controller
                 'success' => true,
                 'access_token' => $token,
                 'admin' => $admin,
-                'message' => 'Connexion réussie.'
+                'message' => 'تم تسجيل الدخول بنجاح'
             ]);
         }
     }

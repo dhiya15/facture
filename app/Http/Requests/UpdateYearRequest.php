@@ -40,11 +40,11 @@ class UpdateYearRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Nom est obligatoire',
-            'name.exists' => 'Nom est déja existe',
-            'month_amount.required' => 'Prix est obligatoire',
-            'id.required' => 'id années est obligatoire',
-            'id.exists' => 'années non trouvé'
+            'name.required' => 'الاسم اجباري',
+            'name.exists' => 'اسم موجود من قبل',
+            'month_amount.required' => 'المبلغ السنوي اجباري',
+            'id.required' => 'معرف السنة اجباري',
+            'id.exists' => 'سنة مالية غير موجودة'
         ];
     }
 }

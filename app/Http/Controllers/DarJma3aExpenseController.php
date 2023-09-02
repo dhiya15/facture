@@ -18,7 +18,7 @@ class DarJma3aExpenseController extends Controller
             DarJma3aExpense::create($data);
             return response()->json([
                 "success" => true,
-                "message" => "Opération réussie"
+                "message" => "نجحت العملية"
             ]);
         } catch (\Exception $e) {
             return response()->json([

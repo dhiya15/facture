@@ -37,8 +37,8 @@ class AddTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Type est obligatoire',
-            'name.unique' => 'Type est déja existe',
+            'name.required' => 'النوع اجباري',
+            'name.unique' => 'النوع موجود من قبل',
         ];
     }
 }
