@@ -7,6 +7,7 @@ use App\Http\Controllers\Jam3iyaExpenseController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberParticipationController;
 use App\Http\Controllers\MemberYearController;
+use App\Http\Controllers\RevenuesController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\YearController;
 use App\Models\MemberYear;
@@ -82,4 +83,11 @@ Route::group(['prefix' => 'giveway'], function() {
     Route::get('/get-all', [GivewayController::class, 'getAll']);
     Route::post('/update', [GivewayController::class, 'update']);
     Route::post('/delete', [GivewayController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'revenues'], function() {
+    Route::post('/create', [RevenuesController::class, 'create']);
+    Route::get('/get-all', [RevenuesController::class, 'getAll']);
+    Route::post('/update', [RevenuesController::class, 'update']);
+    Route::post('/delete', [RevenuesController::class, 'delete']);
 });
