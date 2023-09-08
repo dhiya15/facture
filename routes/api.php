@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DarJma3aExpenseController;
 use App\Http\Controllers\GivewayController;
 use App\Http\Controllers\Jam3iyaExpenseController;
@@ -91,3 +92,5 @@ Route::group(['prefix' => 'revenues'], function() {
     Route::post('/update', [RevenuesController::class, 'update']);
     Route::post('/delete', [RevenuesController::class, 'delete']);
 });
+
+Route::post('/upload-members', [Controller::class, 'uploadMembers']);
