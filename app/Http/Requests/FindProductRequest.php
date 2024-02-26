@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTypeRequest extends FormRequest
+class FindProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:types,id',
-            'name'=>'required|string',
-            'description'=>'nullable|string',
+            'id' => 'required|exists:products,id',
         ];
     }
 
@@ -38,10 +36,8 @@ class UpdateTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'النوع اجباري',
-            'name.exists' => 'Tنوع موجود من قبل',
-            'id.required' => 'معرف النوع اجباري',
-            'id.exists' => 'نوع غير موجود'
+            'id.required' => 'معرف المنتج اجباري',
+            'id.exists' => 'منتج غير موجود'
         ];
     }
 }

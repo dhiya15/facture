@@ -24,12 +24,12 @@ class AddMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'full_name'=>'required|string',
+            'full_name_ar'=>'required|string',
+            'full_name_fr'=>'required|string',
+            'address_ar'=>'nullable|string',
+            'address_fr'=>'nullable|string',
             'email'=>'nullable|string|email|unique:members',
             'phone'=>'required|string|unique:members|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'birth_date'=>'nullable|date',
-            'profession'=>'nullable|string',
-            'image'=>'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 
@@ -41,16 +41,16 @@ class AddMemberRequest extends FormRequest
     public function messages()
     {
         return [
-            'full_name.required' => 'الاسم اجباري',
+            'full_name_ar.required' => 'الاسم بالعربية اجباري',
+            'full_name_fr.required' => 'الاسم بالفرنسية اجباري',
+            'address_ar.required' => 'العنوان بالعربية اجباري',
+            'address_fr.required' => 'العنوان بالفرنسية اجباري',
             'email.email' => 'ايميل غير صالح',
             'email.unique' => 'ايميل مستخدم من قبل',
             'phone.required' => 'العاتف اجباري',
             'phone.unique' => 'الهاتف مستخدم من قبل',
             'phone.regex' => 'العاتف غير صالح',
             'phone.min' => 'يجب ان يكون رقم الهاتف من عشر ارقام على الاقل',
-            'image.image' => 'يجب ان يكون الشعار عبارة عن صورة',
-            'image.mimes' => 'امتداد غير مقبول',
-            'image.max' => 'اكبر حجم مسموح هو 2 ميغا'
         ];
     }
 }

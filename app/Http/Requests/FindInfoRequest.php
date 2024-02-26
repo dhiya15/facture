@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddExpensesRequest extends FormRequest
+class FindInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class AddExpensesRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'=>'required|numeric',
-            'amount'=>'required',
-            'description'=>'nullable|string'
+            'id' => 'required|exists:infos,id',
         ];
     }
 
@@ -38,8 +36,8 @@ class AddExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'النوع اجباري',
-            'amount.required' => 'المبلغ اجباري'
+            'id.required' => 'معرف المعلومات اجباري',
+            'id.exists' => 'معلومات غير موجودة'
         ];
     }
 }

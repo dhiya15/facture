@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJam3iyaExpensesTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateJam3iyaExpensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jam3iya_expenses', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("type_id")->nullable();
-            $table->double("amount");
-            $table->string("description")->nullable();
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('SET NULL');
+
+            $table->string("name")->nullable();
+
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateJam3iyaExpensesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jam3iya_expenses');
+        Schema::dropIfExists('products');
     }
 }

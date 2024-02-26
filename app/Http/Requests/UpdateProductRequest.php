@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FindDarJma3aExpensesRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class FindDarJma3aExpensesRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:dar_jma3a_expenses,id'
+            'id' => 'required|exists:products,id',
+            'name'=>'required|string',
         ];
     }
 
@@ -36,8 +37,9 @@ class FindDarJma3aExpensesRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'معرف دار الجماعة اجباري',
-            'id.exists' => 'دار الجماعة غير موجودة'
+            'name.required' => 'الاسم اجباري',
+            'id.required' => 'المعرف اجباري',
+            'id.exists' => 'منتج غير موجود'
         ];
     }
 }

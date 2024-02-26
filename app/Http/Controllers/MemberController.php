@@ -6,8 +6,6 @@ use App\Http\Requests\AddMemberRequest;
 use App\Http\Requests\FindMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
-use App\Models\MemberParticipation;
-use App\Models\Year;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -16,17 +14,7 @@ class MemberController extends Controller
     public function create(AddMemberRequest $request) {
         try {
             $data = $request->all();
-            if($request->hasFile("image")) {
-                $data["image"] = 'storage/' . $request->file('image')->store('images', 'public');
-            }
             Member::create($data);
-            /*$years = Year::all();
-            foreach ($years as $year){
-                MemberParticipation::create([
-                    "year_id" => $year->id,
-                    "member_id" => $member->id
-                ]);
-            }*/
             return response()->json([
                 "success" => true,
                 "message" => "نجحت العملية"
@@ -59,12 +47,11 @@ class MemberController extends Controller
         try {
             $member = Member::find($request->id);
 
-            if($request->hasFile("image")) {
-                $member->image = 'storage/' . $request->file('image')->store('images', 'public');
+            if(!empty($request->input('full_name_ar')) && !is_null($request->input('full_name_ar'))){
+                $member->full_name_ar = $request->input('full_name_ar');
             }
-
-            if(!empty($request->input('full_name')) && !is_null($request->input('full_name'))){
-                $member->full_name = $request->input('full_name');
+            if(!empty($request->input('full_name_fr')) && !is_null($request->input('full_name_fr'))){
+                $member->full_name_fr = $request->input('full_name_fr');
             }
             if(!empty($request->input('email')) && !is_null($request->input('email'))){
                 $member->email = $request->input('email');
@@ -72,11 +59,11 @@ class MemberController extends Controller
             if(!empty($request->input('phone')) && !is_null($request->input('phone'))){
                 $member->phone = $request->input('phone');
             }
-            if(!empty($request->input('profession')) && !is_null($request->input('profession'))){
-                $member->profession = $request->input('profession');
+            if(!empty($request->input('address_ar')) && !is_null($request->input('address_ar'))){
+                $member->address_ar = $request->input('address_ar');
             }
-            if(!empty($request->input('birth_date')) && !is_null($request->input('birth_date'))){
-                $member->birth_date = $request->input('birth_date');
+            if(!empty($request->input('address_fr')) && !is_null($request->input('address_fr'))){
+                $member->address_fr = $request->input('address_fr');
             }
 
             $member->update();

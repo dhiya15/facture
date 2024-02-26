@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AddTypeRequest;
-use App\Http\Requests\FindTypeRequest;
-use App\Http\Requests\UpdateTypeRequest;
-use App\Models\Type;
+use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\FindProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class ProductController extends Controller
 {
-    public function create(AddTypeRequest $request) {
+    public function create(AddProductRequest $request) {
         try {
             $data = $request->all();
-            Type::create($data);
+            Product::create($data);
             return response()->json([
                 "success" => true,
                 "message" => "نجحت العملية"
@@ -28,7 +28,7 @@ class TypeController extends Controller
 
     public function getAll(Request $request) {
         try {
-            $data = Type::all();
+            $data = Product::all();
             return response()->json([
                 "success" => true,
                 "data" => $data
@@ -41,25 +41,20 @@ class TypeController extends Controller
         }
     }
 
-    public function update(UpdateTypeRequest $request)
+    public function update(UpdateProductRequest $request)
     {
-
         try {
-
-            $type = Type::find($request->id);
+            $member = Product::find($request->id);
 
             if(!empty($request->input('name')) && !is_null($request->input('name'))){
-                $type->name = $request->input('name');
-            }
-            if(!empty($request->input('description')) && !is_null($request->input('description'))){
-                $type->description = $request->input('description');
+                $member->name = $request->input('name');
             }
 
-            $type->update();
+            $member->update();
 
             return response()->json([
                 "success" => true,
-                "data" => $type
+                "data" => $member
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -70,11 +65,11 @@ class TypeController extends Controller
         }
     }
 
-    public function delete(FindTypeRequest $request)
+    public function delete(FindProductRequest $request)
     {
         try {
-            $type= Type::find($request->id);
-            if($type->delete()){
+            $member= Product::find($request->id);
+            if($member->delete()){
                 return response()->json([
                     "success" => true,
                 ]);

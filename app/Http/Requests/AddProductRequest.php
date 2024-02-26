@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FindYearRequest extends FormRequest
+class AddProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class FindYearRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:years,id'
+            'name'=>'required|unique:products|string',
         ];
     }
 
@@ -36,8 +36,8 @@ class FindYearRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'معرف السنة اجباري',
-            'id.exists' => 'سنة غير موجودة'
+            'name.required' => 'الاسم اجباري',
+            'name.unique' => 'اسم موجود مسبقا',
         ];
     }
 }
