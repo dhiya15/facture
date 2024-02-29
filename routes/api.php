@@ -51,4 +51,5 @@ Route::prefix('admin')->group(function () {
     Route::post('/update-password', [AdminController::class, 'updatePassword']);
 });
 
+Route::post('/print-invoice', [Controller::class, 'printInvoice']);
 Route::post('/upload-members', [Controller::class, 'uploadMembers']);

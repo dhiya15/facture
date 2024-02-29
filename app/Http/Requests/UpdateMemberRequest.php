@@ -28,8 +28,8 @@ class UpdateMemberRequest extends FormRequest
             'full_name_fr'=>'required|string',
             'address_ar'=>'nullable|string',
             'address_fr'=>'nullable|string',
-            'email'=>'nullable|string|email|unique:members',
-            'phone'=>'required|string|unique:members|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'nullable|string|email',
+            'phone'=>'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'id' => 'required|exists:members,id',
         ];
     }
