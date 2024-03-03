@@ -37,6 +37,7 @@ class AddInfoRequest extends FormRequest
             'agency_ar'=>'nullable|string',
             'agency_fr'=>'nullable|string',
             'key'=>'nullable|string',
+            'key_ar'=>'nullable|string',
             'header_ar'=>'nullable|string',
             'header_fr'=>'nullable|string',
             'default'=>'nullable|boolean',

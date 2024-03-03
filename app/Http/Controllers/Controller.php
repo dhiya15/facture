@@ -9,10 +9,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Rmunate\Utilities\SpellNumber;
 use Shuchkin\SimpleXLSX;
 use PDF;
-use function PHPUnit\Framework\isNull;
+use NumberToWords\NumberToWords;
 
 class Controller extends BaseController
 {
@@ -72,8 +71,9 @@ class Controller extends BaseController
         for($i=0; $i<count($items); $i++) {
             $total = $total + ($items[$i]["price"] * $items[$i]["qte"]);
         }
-
-        $pdf = PDF::loadView('report.report2', [
+        $pdf = PDF::loadView(
+            ($lang == 'fr') ? 'report.report2' : 'report.report',
+        [
             "client" => $client,
             "info" => $info,
             "items" => $items,
@@ -81,6 +81,10 @@ class Controller extends BaseController
             "number" => $number,
             "with_price" => $withPrice,
             "total" => $total,
+            "totalText" =>
+                ($lang == 'fr') ?
+                    NumberToWords::transformNumber('fr', $total) . " dinars Algérienne" :
+                    NumberToWords::transformNumber('ar', $total) . " دينار جزائري",
         ], [], [
             'mode'                       => '',
             'format'                     => 'A4',
@@ -141,6 +145,6 @@ class Controller extends BaseController
             'autoLangToFont' => true
         ]);
 
-        return $pdf->output('report2.pdf');
+        return $pdf->output('report.pdf');
     }
 }

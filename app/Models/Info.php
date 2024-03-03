@@ -11,6 +11,7 @@ class Info extends Model
 
     protected $fillable = [
         "key",
+        "key_ar",
         "image",
         "full_name_ar",
         "full_name_fr",

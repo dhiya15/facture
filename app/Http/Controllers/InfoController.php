@@ -55,6 +55,9 @@ class InfoController extends Controller
             if(!empty($request->input('key')) && !is_null($request->input('key'))){
                 $member->key = $request->input('key');
             }
+            if(!empty($request->input('key_ar')) && !is_null($request->input('key_ar'))){
+                $member->key_ar = $request->input('key_ar');
+            }
             if(!empty($request->input('full_name_ar')) && !is_null($request->input('full_name_ar'))){
                 $member->full_name_ar = $request->input('full_name_ar');
             }

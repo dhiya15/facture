@@ -17,6 +17,7 @@ class CreateInfosTable extends Migration
             $table->id();
 
             $table->string("key")->nullable();
+            $table->string("key_ar")->nullable();
             $table->string("image")->nullable();
             $table->string("full_name_ar")->nullable();
             $table->string("full_name_fr")->nullable();

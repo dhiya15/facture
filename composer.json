@@ -10,11 +10,11 @@
         "carlos-meneses/laravel-mpdf": "^2.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "kwn/number-to-words": "^2.9",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "milon/barcode": "^10.0",
-        "rmunate/spell-number": "^1.0",
         "shuchkin/simplexlsx": "^1.0"
     },
     "require-dev": {
