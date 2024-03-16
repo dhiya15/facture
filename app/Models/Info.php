@@ -30,4 +30,9 @@ class Info extends Model
         "header_fr",
         "default"
     ];
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

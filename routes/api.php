@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -42,6 +43,13 @@ Route::group(['prefix' => 'infos'], function() {
     Route::get('/get-all', [InfoController::class, 'getAll']);
     Route::post('/update', [InfoController::class, 'update']);
     Route::post('/delete', [InfoController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'invoices'], function() {
+    Route::post('/create', [InvoiceController::class, 'create']);
+    Route::get('/get-all', [InvoiceController::class, 'getAll']);
+    Route::post('/update', [InvoiceController::class, 'update']);
+    Route::post('/delete', [InvoiceController::class, 'delete']);
 });
 
 Route::prefix('admin')->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\Invoice;
 use App\Models\Member;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -60,12 +61,27 @@ class Controller extends BaseController
     }
 
     public function printInvoice(Request $request) {
+
         $client = Member::find($request->client);
         $info = Info::find($request->info);
         $items = $request->items;
         $lang = $request->lang;
         $number = $request->number;
+        $order_no = $request->order_no;
         $withPrice = $request->withPrice;
+
+        if(!$request->has("without_save")) {
+            $data = [
+                "member_id" => $request->client,
+                "info_id" => $request->info,
+                "products" => $request->strProducts,
+                "number" => $request->number,
+                "order_no" => $request->order_no,
+                "lang" => $request->lang,
+                "with_price" => $request->withPrice,
+            ];
+            Invoice::create($data);
+        }
 
         $total = 0;
         for($i=0; $i<count($items); $i++) {
@@ -79,6 +95,7 @@ class Controller extends BaseController
             "items" => $items,
             "lang" => $lang,
             "number" => $number,
+            "order_no" => $order_no,
             "with_price" => $withPrice,
             "total" => $total,
             "totalText" =>

@@ -18,4 +18,9 @@ class Member extends Model
         "phone"
     ];
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
 }
