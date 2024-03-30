@@ -29,7 +29,7 @@ class AddMemberRequest extends FormRequest
             'address_ar'=>'nullable|string',
             'address_fr'=>'nullable|string',
             'email'=>'nullable|string|email|unique:members',
-            'phone'=>'required|string|unique:members|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'phone'=>'nullable|string|unique:members|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ];
     }
 
@@ -47,9 +47,8 @@ class AddMemberRequest extends FormRequest
             'address_fr.required' => 'العنوان بالفرنسية اجباري',
             'email.email' => 'ايميل غير صالح',
             'email.unique' => 'ايميل مستخدم من قبل',
-            'phone.required' => 'العاتف اجباري',
             'phone.unique' => 'الهاتف مستخدم من قبل',
-            'phone.regex' => 'العاتف غير صالح',
+            'phone.regex' => 'الهاتف غير صالح',
             'phone.min' => 'يجب ان يكون رقم الهاتف من عشر ارقام على الاقل',
         ];
     }

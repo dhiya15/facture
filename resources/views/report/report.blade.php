@@ -45,20 +45,23 @@
         }
 
         .invoice-table, .invoice-table th, .invoice-table td {
-            border: 1px solid #eeeeee;
+            /*border: 1px solid #eeeeee;*/
+            border: 1px solid #000000;
         }
 
         .invoice-table th, .invoice-table td {
-            padding: 10px;
+            padding: 5px;
             text-align: left;
         }
 
         .invoice-table th {
-            background-color: #e0e0e0; /* Header background color */
+            /*background-color: #e0e0e0; */
+            background-color: #ffffff;
         }
 
         .invoice-table tbody tr:nth-child(odd) {
-            background-color: #f9f9f9; /* Odd row background color */
+            /*background-color: #f9f9f9; /* Odd row background color */
+            background-color: #ffffff; /* Odd row background color */
         }
 
 
@@ -73,7 +76,7 @@
 </head>
 <body>
 
-<table style="margin-bottom: 30px">
+<table style="margin-bottom: 20px">
     <tr>
 
         <td style="float: right; text-align: right; width: 80%">
@@ -85,12 +88,12 @@
         </td>
     </tr>
 </table>
-<table style="margin-bottom: 30px">
+<table style="margin-bottom: 20px">
     <tr>
         <td style="text-align: right; width: 65%">
 
             <p class="normal-text"><b>اللقب والاسم: </b> {{$info->full_name_ar ?? '-'}}</p>
-            <p class="normal-text"><b>رقم الحساب البنكي ق,ش,ب: </b> {{$info->account_number ?? '-'}}</p>
+            <p class="normal-text"><b>رقم الحساب البنكي للقرض الشعبي الجزائري: </b> {{$info->account_number ?? '-'}}</p>
             <p class="normal-text"><b>السجل التجاري رقم: </b> {{$info->register_number ?? "-"}}</p>
             <p class="normal-text"><b>رقم التعريف الجبائي: </b> {{$info->id_number ?? "-"}}</p>
             <p class="normal-text"><b>رقم التعريف الاحصائي: </b> {{$info->statistics_number ?? "-"}}</p>
@@ -98,10 +101,10 @@
         </td>
         <td style="float: right; text-align: right;">
 
-            <p class="normal-text"><b>المستفيد: </b> {{$client->full_name_ar ?? '-'}}</p>
-            <p class="normal-text"><b>الهاتف: </b> {{$client->phone ?? '-'}}</p>
-            <p class="normal-text"><b>البريد الالكتروني: </b> {{$client->email ?? '-'}}</p>
-            <p class="normal-text"><b>العنوان: </b> {{$client->address_ar ?? '-'}}</p>
+            <p class="normal-text"><b>الى: </b> {{$client->full_name_ar ?? '-'}}</p>
+            <p class="normal-text"><b>رقم الفاتورة: </b> {{$number ?? "-"}}</p>
+            <p class="normal-text"><b>رقم الطلبية: </b> {{$order_no ?? "-"}}</p>
+            <p class="normal-text"><b>كرزاز في: </b> ..............................................</p>
 
             @php
                 $currentDateTime = now(); // Get current date and time
@@ -110,48 +113,51 @@
                 $previousDate = date('Y-m-d', strtotime('-1 day'));
                 $formattedDate = date('d-m-Y', strtotime($previousDate))
             @endphp
-            <p class="normal-text"><b>كرزاز في: </b>{{ $formattedDate }}</p>
+{{--            <p class="normal-text"><b>كرزاز في: </b>{{ $formattedDate }}</p>--}}
+{{--            <p class="normal-text"><b>كرزاز في: </b>.......................</p>--}}
         </td>
     </tr>
 </table>
 
 
 
-<table style="margin-bottom: 30px; text-align: center;">
+<table style="margin-bottom: 20px; text-align: center;">
     <tr style="text-align: center;">
         <td style="text-align: center;">
             <h1 style="text-align: center; color: #000000; padding-right: 20px">{{$info->key_ar ?? "-"}}</h1>
-            <p class="normal-text"><b>رقم: </b> {{$number ?? "-"}}</p>
-            <p class="normal-text"><b>رقم الطلبية: </b> {{$order_no ?? "-"}}</p>
+{{--            <p class="normal-text"><b>رقم: </b> {{$number ?? "-"}}</p>--}}
+{{--            <p class="normal-text"><b>رقم الطلبية: </b> {{$order_no ?? "-"}}</p>--}}
         </td>
     </tr>
 </table>
 
-<table class="invoice-table" style="margin-bottom: 30px">
+<table class="invoice-table" style="margin-bottom: 20px">
     <thead>
     <tr>
-        <th style="float: right; text-align: right;">المنتج</th>
+        <th style="float: right; text-align: right; width: 5%">الرقم</th>
+        <th style="float: right; text-align: right">المنتج</th>
         @if($with_price == "oui")
-        <th style="float: right; text-align: right;">الثمن (دج)</th>
+        <th style="float: right; text-align: right; width: 15%">الثمن (دج)</th>
         @endif
-        <th style="float: right; text-align: right;">الوحدة</th>
-        <th style="float: right; text-align: right;">الكمية</th>
+        <th style="float: right; text-align: right; width: 7%">الوحدة</th>
+        <th style="float: right; text-align: right; width: 7%">الكمية</th>
         @if($with_price == "oui")
-        <th style="float: right; text-align: right;">الثمن الكلي (دج)</th>
+        <th style="float: right; text-align: right; width: 15%">الثمن الكلي (دج)</th>
         @endif
     </tr>
     </thead>
     <tbody>
     @for($i=0; $i<count($items); $i++)
         <tr>
+            <td style="float: right; text-align: right;">{{$i+1}}</td>
             <td style="float: right; text-align: right;">{{$items[$i]["name"]}}</td>
             @if($with_price == "oui")
-            <td style="float: right; text-align: right; direction: ltr;">{{number_format($items[$i]["price"], 0, ',', ' ')}}</td>
+            <td style="float: right; text-align: right; direction: ltr;">{{number_format($items[$i]["price"], 0, ',', ' ').",00"}}</td>
             @endif
             <td style="float: right; text-align: right;">{{$items[$i]["unit"]}}</td>
             <td style="float: right; text-align: right;">{{$items[$i]["qte"]}}</td>
             @if($with_price == "oui")
-            <td style="float: right; text-align: right; direction: ltr;">{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ')}}</td>
+            <td style="float: right; text-align: right; direction: ltr;">{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ').",00"}}</td>
             @endif
         </tr>
     @endfor
@@ -160,29 +166,26 @@
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
-        <td style="float: right; text-align: right;"><b>الثمن الكلي (دج)</b></td>
-        <td style="float: right; text-align: right; direction: ltr;">{{number_format($total, 0, ',', ' ')}}</td>
+        <td style="float: right; text-align: right;" colspan="2"><b>الثمن الكلي (دج)</b></td>
+        <td style="float: right; text-align: right; direction: ltr;">{{number_format($total, 0, ',', ' ').",00"}}</td>
     </tr>
     @endif
     </tbody>
 </table>
 @if($with_price == "oui")
-<table style="margin-bottom: 30px; text-align: center;">
+<table style="margin-bottom: 20px; text-align: center;">
     <tr style="text-align: center;">
         <td style="text-align: center;">
-            <p class="normal-text"><b>السعر الوصفي: </b> {{$totalText}}</p>
+            <p class="normal-text"><b>حددت واوقفت هذه الفاتورة عند مبلغ قدره: </b> {{$totalText}}</p>
         </td>
     </tr>
 </table>
 @endif
-
-<br>
-<br>
 <table>
     <tr>
         <td style="width: 80%;"></td>
         <td style="margin-left: 30px">
-            <img src="{{'data:image/png;base64,' . DNS2D::getBarcodePNG($number, 'QRCODE')}}" alt="QR Code" style="width: 55px; height: 55px; margin-bottom: 5px">
+{{--            <img src="{{'data:image/png;base64,' . DNS2D::getBarcodePNG($number, 'QRCODE')}}" alt="QR Code" style="width: 55px; height: 55px; margin-bottom: 5px">--}}
             <p class="normal-text" style="color: white"><b>الامضاء</b></p>
             <p class="normal-text" style="margin-top: 15px"><b>الامــضاء</b></p>
         </td>

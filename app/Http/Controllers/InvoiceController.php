@@ -38,6 +38,32 @@ class InvoiceController extends Controller
         }
     }
 
+    public function getAllProducts(Request $request) {
+        try {
+            $data = Invoice::all();
+            $products = [];
+            for($i=0; $i<count($data); $i++) {
+                $data2 = explode("$", $data[$i]->products);
+                for($j=0; $j<count($data2); $j++) {
+                  $product = explode("#", $data2[$j])[0];
+                  if(!in_array($product, $products)) {
+                      $products[] = $product;
+                  }
+                }
+              }
+            return response()->json([
+                "success" => true,
+                "data" => $products
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "data" => []
+            ], 404);
+        }
+
+    }
+
     public function update(Request $request)
     {
         try {

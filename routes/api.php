@@ -48,6 +48,7 @@ Route::group(['prefix' => 'infos'], function() {
 Route::group(['prefix' => 'invoices'], function() {
     Route::post('/create', [InvoiceController::class, 'create']);
     Route::get('/get-all', [InvoiceController::class, 'getAll']);
+    Route::get('/get-all-products', [InvoiceController::class, 'getAllProducts']);
     Route::post('/update', [InvoiceController::class, 'update']);
     Route::post('/delete', [InvoiceController::class, 'delete']);
 });

@@ -40,20 +40,20 @@
         }
 
         .invoice-table, .invoice-table th, .invoice-table td {
-            border: 1px solid #eeeeee;
+            border: 1px solid #000000;
         }
 
         .invoice-table th, .invoice-table td {
-            padding: 10px;
+            padding: 5px;
             text-align: left;
         }
 
         .invoice-table th {
-            background-color: #e0e0e0; /* Header background color */
+            background-color: #ffffff; /* Header background color */
         }
 
         .invoice-table tbody tr:nth-child(odd) {
-            background-color: #f9f9f9; /* Odd row background color */
+            background-color: #ffffff; /* Odd row background color */
         }
 
 
@@ -68,7 +68,7 @@
 </head>
 <body>
 
-<table style="margin-bottom: 30px">
+<table style="margin-bottom: 20px">
     <tr>
         <td style="float: right; text-align: left; width: 80%">
             <h3 style="float: right; text-align: right; color: #000000; padding-right: 20px">{{$info->full_name_fr ?? '-'}}</h3>
@@ -79,7 +79,7 @@
         </td>
     </tr>
 </table>
-<table style="margin-bottom: 30px">
+<table style="margin-bottom: 20px">
     <tr>
         <td style="text-align: left;">
 
@@ -92,10 +92,10 @@
         </td>
         <td style="float: right; text-align: right;">
 
-            <p class="normal-text"><b>Bénéficitaire: </b> {{$client->full_name_fr ?? '-'}}</p>
-            <p class="normal-text"><b>Téléphone: </b> {{$client->phone ?? '-'}}</p>
-            <p class="normal-text"><b>Email: </b> {{$client->email ?? '-'}}</p>
-            <p class="normal-text"><b>Adress: </b> {{$client->address_fr ?? '-'}}</p>
+            <p class="normal-text"><b>À: </b> {{$client->full_name_fr ?? '-'}}</p>
+            <p class="normal-text"><b>Facture N°: </b> {{$number ?? "-"}}</p>
+            <p class="normal-text"><b>Commande N°: </b> {{$order_no ?? "-"}}</p>
+            <p class="normal-text"><b>Kerzaz le: </b> ..............................................</p>
 
             @php
                 $currentDateTime = now(); // Get current date and time
@@ -104,7 +104,8 @@
                 $previousDate = date('Y-m-d', strtotime('-1 day'));
                 $formattedDate = date('d-m-Y', strtotime($previousDate))
             @endphp
-            <p class="normal-text"><b>Kerzaz à: </b>{{ $formattedDate }}</p>
+{{--            <p class="normal-text"><b>Kerzaz à: </b>{{ $formattedDate }}</p>--}}
+{{--            <p class="normal-text"><b>Kerzaz à: </b>.................</p>--}}
         </td>
     </tr>
 </table>
@@ -115,37 +116,39 @@
     <tr style="text-align: center;">
         <td style="text-align: center;">
             <h1 style="text-align: center; color: #000000; padding-right: 20px">{{$info->key ?? "-"}}</h1>
-            <p class="normal-text"><b>N°: </b> {{$number ?? "-"}}</p>
-            <p class="normal-text"><b>Commande N°: </b> {{$order_no ?? "-"}}</p>
+{{--            <p class="normal-text"><b>N°: </b> {{$number ?? "-"}}</p>--}}
+{{--            <p class="normal-text"><b>Commande N°: </b> {{$order_no ?? "-"}}</p>--}}
         </td>
     </tr>
 </table>
 
-<table class="invoice-table" style="margin-bottom: 30px">
+<table class="invoice-table" style="margin-bottom: 20px">
     <thead>
     <tr>
+        <th style="width: 5%">N°</th>
         <th>Produit</th>
         @if($with_price == "oui")
-        <th>Prix (DA)</th>
+        <th style="width: 15%">Prix (DA)</th>
         @endif
-        <th>Unité</th>
-        <th>Quantité</th>
+        <th style="width: 7%">Unité</th>
+        <th style="width: 8%">Quantité</th>
         @if($with_price == "oui")
-        <th>Total (DA)</th>
+        <th style="width: 15%">Total (DA)</th>
         @endif
     </tr>
     </thead>
     <tbody>
     @for($i=0; $i<count($items); $i++)
         <tr>
+            <td>{{$i+1}}</td>
             <td>{{$items[$i]["name"]}}</td>
             @if($with_price == "oui")
-            <td>{{number_format($items[$i]["price"], 0, ',', ' ')}}</td>
+            <td>{{number_format($items[$i]["price"], 0, ',', ' ').',00'}}</td>
             @endif
             <td>{{$items[$i]["unit"]}}</td>
             <td>{{$items[$i]["qte"]}}</td>
             @if($with_price == "oui")
-            <td>{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ')}}</td>
+            <td>{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ').',00'}}</td>
             @endif
         </tr>
     @endfor
@@ -154,30 +157,26 @@
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF"></td>
-        <td><b>Total (DA)</b></td>
-        <td>{{number_format($total, 0, ',', ' ')}}</td>
+        <td colspan="2"><b>Total (DA)</b></td>
+        <td>{{number_format($total, 0, ',', ' ').',00'}}</td>
     </tr>
     @endif
     </tbody>
 </table>
 
 @if($with_price == "oui")
-<table style="margin-bottom: 30px; text-align: center;">
+<table style="margin-bottom: 20px; text-align: center;">
     <tr style="text-align: center;">
         <td style="text-align: center;">
-            <p class="normal-text"><b>Prix nominale: </b> {{$totalText}}</p>
+            <p class="normal-text"><b>Cette facture a été fixée et arrêtée à un montant de: </b> {{$totalText}}</p>
         </td>
     </tr>
 </table>
 @endif
-
-<br>
-<br>
 <table>
     <tr>
         <td style="width: 80%;"></td>
         <td style="margin-left: 30px">
-            <img src="{{'data:image/png;base64,' . DNS2D::getBarcodePNG($number, 'QRCODE')}}" alt="QR Code" style="width: 55px; height: 55px; margin-bottom: 5px">
             <p class="normal-text" style="color: white"><b>Signature</b></p>
             <p class="normal-text" style="margin-top: 15px"><b>Signature</b></p>
         </td>
