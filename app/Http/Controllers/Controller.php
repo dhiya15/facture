@@ -69,6 +69,7 @@ class Controller extends BaseController
         $number = $request->number;
         $order_no = $request->order_no;
         $withPrice = $request->withPrice;
+        $date = $request->date_cr;
 
         if(!$request->has("without_save")) {
             $data = [
@@ -80,7 +81,9 @@ class Controller extends BaseController
                 "lang" => $request->lang,
                 "with_price" => $request->withPrice,
             ];
-            Invoice::create($data);
+            $invoice = Invoice::create($data);
+            $invoice->created_at = $request->date_cr;
+            $invoice->update();
         }
 
         $total = 0;
@@ -98,6 +101,7 @@ class Controller extends BaseController
             "order_no" => $order_no,
             "with_price" => $withPrice,
             "total" => $total,
+            "date_cr" => $date,
             "totalText" =>
                 ($lang == 'fr') ?
                     NumberToWords::transformNumber('fr', $total) . " dinars Algérienne" :

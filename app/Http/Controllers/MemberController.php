@@ -46,27 +46,7 @@ class MemberController extends Controller
     {
         try {
             $member = Member::find($request->id);
-
-            if(!empty($request->input('full_name_ar')) && !is_null($request->input('full_name_ar'))){
-                $member->full_name_ar = $request->input('full_name_ar');
-            }
-            if(!empty($request->input('full_name_fr')) && !is_null($request->input('full_name_fr'))){
-                $member->full_name_fr = $request->input('full_name_fr');
-            }
-            if(!empty($request->input('email')) && !is_null($request->input('email'))){
-                $member->email = $request->input('email');
-            }
-            if(!empty($request->input('phone')) && !is_null($request->input('phone'))){
-                $member->phone = $request->input('phone');
-            }
-            if(!empty($request->input('address_ar')) && !is_null($request->input('address_ar'))){
-                $member->address_ar = $request->input('address_ar');
-            }
-            if(!empty($request->input('address_fr')) && !is_null($request->input('address_fr'))){
-                $member->address_fr = $request->input('address_fr');
-            }
-
-            $member->update();
+            $member->update($request->all());
 
             return response()->json([
                 "success" => true,

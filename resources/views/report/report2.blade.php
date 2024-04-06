@@ -82,30 +82,17 @@
 <table style="margin-bottom: 20px">
     <tr>
         <td style="text-align: left;">
-
             <p class="normal-text"><b>Nom et prénom: </b> {{$info->full_name_fr ?? '-'}}</p>
-            <p class="normal-text"><b>Compte bancaire du CPA: </b> {{$info->account_number ?? '-'}}</p>
+            <p class="normal-text"><b>Compte bancaire du CPA: </b> {{$info->account_number ?? '-'}} <b>Agence: </b> {{$info->agency_fr ?? ''}}</p>
             <p class="normal-text"><b>Registre du commerce: </b> {{$info->register_number ?? "-"}}</p>
             <p class="normal-text"><b>Identifiant fiscale: </b> {{$info->id_number ?? "-"}}</p>
             <p class="normal-text"><b>Identifiant statistiques: </b> {{$info->statistics_number ?? "-"}}</p>
-
         </td>
         <td style="float: right; text-align: right;">
-
             <p class="normal-text"><b>À: </b> {{$client->full_name_fr ?? '-'}}</p>
             <p class="normal-text"><b>Facture N°: </b> {{$number ?? "-"}}</p>
             <p class="normal-text"><b>Commande N°: </b> {{$order_no ?? "-"}}</p>
-            <p class="normal-text"><b>Kerzaz le: </b> ..............................................</p>
-
-            @php
-                $currentDateTime = now(); // Get current date and time
-                $date = $currentDateTime->toDateString(); // Extract date
-                $time = $currentDateTime->toTimeString(); // Extract time
-                $previousDate = date('Y-m-d', strtotime('-1 day'));
-                $formattedDate = date('d-m-Y', strtotime($previousDate))
-            @endphp
-{{--            <p class="normal-text"><b>Kerzaz à: </b>{{ $formattedDate }}</p>--}}
-{{--            <p class="normal-text"><b>Kerzaz à: </b>.................</p>--}}
+            <p class="normal-text"><b>Kerzaz à: </b>{{ date('d-m-Y', strtotime($date_cr)) }}</p>
         </td>
     </tr>
 </table>
@@ -125,30 +112,30 @@
 <table class="invoice-table" style="margin-bottom: 20px">
     <thead>
     <tr>
-        <th style="width: 5%">N°</th>
+        <th style="width: 5%; text-align: center">N°</th>
         <th>Produit</th>
         @if($with_price == "oui")
-        <th style="width: 15%">Prix (DA)</th>
+        <th style="width: 15%; text-align: center">Prix (DA)</th>
         @endif
-        <th style="width: 7%">Unité</th>
-        <th style="width: 8%">Quantité</th>
+        <th style="width: 7%; text-align: center">Unité</th>
+        <th style="width: 8%; text-align: center">Quantité</th>
         @if($with_price == "oui")
-        <th style="width: 15%">Total (DA)</th>
+        <th style="width: 15%; text-align: center">Total (DA)</th>
         @endif
     </tr>
     </thead>
     <tbody>
     @for($i=0; $i<count($items); $i++)
         <tr>
-            <td>{{$i+1}}</td>
+            <td style="text-align: center">{{sprintf("%02d", $i+1)}}</td>
             <td>{{$items[$i]["name"]}}</td>
             @if($with_price == "oui")
-            <td>{{number_format($items[$i]["price"], 0, ',', ' ').',00'}}</td>
+            <td style="text-align: center">{{number_format($items[$i]["price"], 0, ',', ' ').',00'}}</td>
             @endif
-            <td>{{$items[$i]["unit"]}}</td>
-            <td>{{$items[$i]["qte"]}}</td>
+            <td style="text-align: center">{{$items[$i]["unit"]}}</td>
+            <td style="text-align: center">{{$items[$i]["qte"]}}</td>
             @if($with_price == "oui")
-            <td>{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ').',00'}}</td>
+            <td style="text-align: center">{{number_format($items[$i]["price"] * $items[$i]["qte"], 0, ',', ' ').',00'}}</td>
             @endif
         </tr>
     @endfor
@@ -157,8 +144,8 @@
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF; border-right-color: #FFFFFF"></td>
         <td style="background-color: white; border-bottom-color: #FFFFFF; border-left-color: #FFFFFF"></td>
-        <td colspan="2"><b>Total (DA)</b></td>
-        <td>{{number_format($total, 0, ',', ' ').',00'}}</td>
+        <td style="text-align: center" colspan="2"><b>Total (DA)</b></td>
+        <td style="text-align: center">{{number_format($total, 0, ',', ' ').',00'}}</td>
     </tr>
     @endif
     </tbody>

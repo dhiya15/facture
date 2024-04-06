@@ -28,8 +28,8 @@ class UpdateMemberRequest extends FormRequest
             'full_name_fr'=>'required|string',
             'address_ar'=>'nullable|string',
             'address_fr'=>'nullable|string',
-            'email'=>'nullable|string|email',
-            'phone'=>'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'nullable|string',
+            'phone'=>'nullable|string',
             'id' => 'required|exists:members,id',
         ];
     }
@@ -44,14 +44,6 @@ class UpdateMemberRequest extends FormRequest
         return [
             'full_name_ar.required' => 'الاسم بالعربية اجباري',
             'full_name_fr.required' => 'الاسم بالفرنسية اجباري',
-            'address_ar.required' => 'العنوان بالعربية اجباري',
-            'address_fr.required' => 'العنوان بالفرنسية اجباري',
-            'email.email' => 'ايميل غير صالح',
-            'email.unique' => 'ايميل مستخدم من قبل',
-            'phone.required' => 'العاتف اجباري',
-            'phone.unique' => 'الهاتف مستخدم من قبل',
-            'phone.regex' => 'العاتف غير صالح',
-            'phone.min' => 'يجب ان يكون رقم الهاتف من عشر ارقام على الاقل',
             'id.required' => 'معرف العضو اجباري',
             'id.exists' => 'عضو غير موجود'
         ];

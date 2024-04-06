@@ -16,7 +16,8 @@ class Invoice extends Model
         "number",
         "order_no",
         "lang",
-        "with_price"
+        "with_price",
+        "created_at"
     ];
 
     public function member()
