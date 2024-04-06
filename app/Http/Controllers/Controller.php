@@ -102,6 +102,9 @@ class Controller extends BaseController
             "with_price" => $withPrice,
             "total" => $total,
             "date_cr" => $date,
+            "title_font" => $request->title_font,
+            "infos_font" => $request->infos_font,
+            "table_font" => $request->table_font,
             "totalText" =>
                 ($lang == 'fr') ?
                     NumberToWords::transformNumber('fr', $total) . " dinars Algérienne" :

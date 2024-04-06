@@ -41,7 +41,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 10px;
+            font-size: {{$table_font}}px;
         }
 
         .invoice-table, .invoice-table th, .invoice-table td {

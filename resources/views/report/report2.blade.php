@@ -22,7 +22,7 @@
 
         h1 {
             font-size: 24px; /* Adjusted font size */
-            margin-bottom: 10px;
+          /*  margin-bottom: 10px;*/
         }
         .normal-text {
             font-size: 12px; /* Adjusted font size */
@@ -36,7 +36,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 10px;
+            font-size: {{$table_font}}px;
         }
 
         .invoice-table, .invoice-table th, .invoice-table td {
